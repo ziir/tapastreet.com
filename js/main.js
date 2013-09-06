@@ -27,13 +27,15 @@
 			scrollEase ='easeOutExpo',
 			targetSection;
 
+		// Scroll animation on inside links
 		this.$.wrapper.find('.navigateTo').on("click", function(evt) {
 			evt.preventDefault();
 			//get current
 			targetSection = tapastreet.$.wrapper.find(this).attr('href');
+			sectionTitle = tapastreet.$.wrapper.find(this).attr('data-title');
 			
 			//Set doc title
-			document.title = 'Tapastreet - ' + ( targetSection.replace( /[_\-\#\!\.\/]/g, ' ' ));
+			document.title = 'Tapastreet - ' + (sectionTitle);
 				
 			//get pos of target section
 			var targetOffset = tapastreet.$.wrapper.find(targetSection).offset().top+1;
