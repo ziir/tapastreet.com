@@ -2,15 +2,6 @@
    Helper Classes
    ========================================================================== */
 
-iframe {
-	width:229px;
-	height:392px;
-	position: absolute;
-	top:98px;
-	left:23px;
-	max-height:80%;
-}
-
 button {
 	border: none;
 	box-sizing:content-box;
@@ -176,7 +167,16 @@ section {
 	position: relative;
 }
 
-.js .feature-preview iframe {
+.feature-preview-content {
+	width:229px;
+	height:392px;
+	position: absolute;
+	top:98px;
+	left:23px;
+	max-height:80%;
+}
+
+.js .feature-preview-content {
 	display:block;
 }
 
