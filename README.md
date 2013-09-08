@@ -17,7 +17,7 @@ This project is based on the famous [HTML5 BOILERPLATE](http://html5boilerplate.
 Choose one of the following options:
 
 1. Clone the git repo — `git clone
-   https://github.com/ziir/tapastreet-draft.git`
+   https://github.com/ziir/tapastreet.com.git`
 
 
 ## Contributing
