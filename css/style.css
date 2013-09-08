@@ -109,9 +109,9 @@ section {
 }
 
 .section-shifted {
-	-webkit-transform:translateX(400px);
-	-moz-transform:translateX(400px);
-	transform:translateX(400px);
+	-webkit-transform:translateX(300px);
+	-moz-transform:translateX(300px);
+	transform:translateX(300px);
 }
 
 #header ul {
@@ -219,7 +219,7 @@ section {
 	}
 
 	#header {
-		width:400px;
+		width:300px;
 		height:100%;
 		overflow: hidden;
 	}
@@ -233,7 +233,7 @@ section {
 
 	.nav-item {
 		opacity: 0.8;
-		font-size: 2em;
+		font-size: 1.5em;
 	}
 
 	.nav-item a {
@@ -252,7 +252,7 @@ section {
 		margin: 0 auto;
 		position: absolute;
 		top:30px;
-		left:200px;
+		left:180px;
 		margin-left: -125px;
 		clear:both;
 		background-color: transparent !important;
