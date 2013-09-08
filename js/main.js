@@ -8,7 +8,7 @@
 
 		this.$.window = $(window);
 		this.$.document = $(document);
-		this.$.body = $("body");
+		this.$.body = $("body, html");
 
 		this.$.header = $("#header");
 		this.$.navButton = $("#nav-btn");
@@ -46,7 +46,6 @@
 
 		// Scroll animation on inside links
 		this.$.wrapper.find('.navigateTo').on("click", function(evt) {
-
 			evt.preventDefault();
 			targetSection = tapastreet.$.wrapper.find(this).attr('href');
 			sectionTitle = tapastreet.$.wrapper.find(this).attr('data-title');
@@ -57,7 +56,7 @@
 
 			self.$.body.animate({scrollTop: targetOffset}, scrollSpeed, scrollEase, function() {
 				window.location.hash = targetSection;
-			 });
+			});
 
 		});
 
@@ -73,7 +72,9 @@
 		self.$.window.scroll(function(evt){
 			if(self.x > 979) {
 			    if(self.$.window.scrollTop() > self.$.introduction.position().top){
-			        self.$.header.removeClass('header-hide').addClass('header-show');
+			    	if(!self.$.header.hasClass('header-show')) {
+						self.$.header.removeClass('header-hide').addClass('header-show');
+			    	}
 			    } else {
 			        self.$.header.removeClass('header-show').addClass('header-hide');
 			    }				
