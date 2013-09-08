@@ -1,6 +1,5 @@
 (function(){
 	var tapastreet = {};
-
 	tapastreet.init = function() {
 
 		// jQuery Selectors to be used
@@ -48,7 +47,8 @@
 		var self = this;
 		var	scrollSpeed = 1000,
 			scrollEase ='easeOutExpo',
-			targetSection;
+			targetSection,
+			timeoutID;
 
 		// Scroll animation on inside links
 		this.$.wrapper.find('.navigateTo').on("click", function(evt) {
@@ -74,7 +74,7 @@
 		});
 
 
-		// Show the header on page scroll
+		// Show the horizontal header on page scroll
 		self.$.window.scroll(function(evt){
 			if(self.x > 979) {
 			    if(self.$.window.scrollTop() > self.$.introduction.position().top){
@@ -90,8 +90,11 @@
 
 		// On window resize, resize key elements of the page.
 		$(window).resize(function() {
+			if(self.timeOutId) {
+				window.clearTimeout(timeoutID);
+			}
 			self.fitSectionsToUserScreen();
-			self.fitFeaturePreviewToUserScreen();
+			self.timeOutId = window.setTimeout(self.fitFeaturePreviewToUserScreen, 200);
 		});
 
 	}
@@ -181,5 +184,17 @@
 		M= M? [M[1], M[2]]: [N, navigator.appVersion,'-?'];
 		return M;
 	})();
+
+    //device check
+    navigator.isMobile = false;
+	
+    if( navigator.userAgent.match(/Android/i) || 
+        navigator.userAgent.match(/webOS/i) ||
+        navigator.userAgent.match(/iPhone/i) || 
+        navigator.userAgent.match(/iPad/i)|| 
+        navigator.userAgent.match(/iPod/i) || 
+        navigator.userAgent.match(/BlackBerry/i)){			
+        isMobile = true;
+    }
  
 }());
