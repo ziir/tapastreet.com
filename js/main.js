@@ -89,12 +89,11 @@
 		});
 
 		// On window resize, resize key elements of the page.
-		$(window).resize(function() {
-			if(self.timeOutId) {
-				window.clearTimeout(timeoutID);
-			}
+		$(window).resize(function(evt) {
 			self.fitSectionsToUserScreen();
-			self.timeOutId = window.setTimeout(self.fitFeaturePreviewToUserScreen, 200);
+			if(navigator.isMobile) {
+				self.fitFeaturePreviewToUserScreen();
+			}
 		});
 
 	}
