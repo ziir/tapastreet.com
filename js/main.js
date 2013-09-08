@@ -1,14 +1,20 @@
-(function($){
+(function($, jQuery){
 	var tapastreet = {};
 
 	tapastreet.init = function() {
 
 		// jQuery Selectors to be used
 		this.$ = {};
+		navigator.sayswho = navigator.sayswho || ["Unknow"];
 
 		this.$.window = $(window);
 		this.$.document = $(document);
-		this.$.body = $("body, html");
+
+		if(navigator.sayswho[0] !== "Unknow") {
+			this.$.scrollBody = $(navigator.sayswho[0] == "Chrome" ? "body": "html");
+		} else {
+			this.$.scrollBody = $("body,html");
+		}
 
 		this.$.header = $("#header");
 		this.$.navButton = $("#nav-btn");
@@ -54,7 +60,7 @@
 				
 			var targetOffset = tapastreet.$.wrapper.find(targetSection).offset().top;
 
-			self.$.body.animate({scrollTop: targetOffset}, scrollSpeed, scrollEase, function() {
+			self.$.scrollBody.animate({scrollTop: targetOffset}, scrollSpeed, scrollEase, function() {
 				window.location.hash = targetSection;
 			});
 
@@ -107,9 +113,7 @@
 	}
 
 	tapastreet.fitFeaturePreviewToUserScreen = function() {
-		console.log('FIT featurePreview');
 		var self = this;
-		// top : 98 -  left : 23
 		var iPhoneHWRatio = 2.11,
 			iPhoneContentWHRatio = 0.58,
 			iPhoneContentWWRatio = 1.18777292576,
@@ -164,11 +168,18 @@
 
 	}
 
-
 	$(document).ready(function() {
 		console.log('Tapstreet init');
 		$("html:first").removeClass('no-js').addClass('js');
 		tapastreet.init();
 	});
+
+	navigator.sayswho= (function(){
+		var N= navigator.appName, ua= navigator.userAgent, tem;
+		var M= ua.match(/(opera|chrome|safari|firefox|msie)\/?\s*(\.?\d+(\.\d+)*)/i);
+		if(M && (tem= ua.match(/version\/([\.\d]+)/i))!= null) M[2]= tem[1];
+		M= M? [M[1], M[2]]: [N, navigator.appVersion,'-?'];
+		return M;
+	})();
  
-}(jQuery));
+}($, jQuery));

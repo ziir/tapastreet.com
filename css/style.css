@@ -141,6 +141,12 @@ section {
 	width:210px;
 }
 
+.nav-item {
+	border:none;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
 #title-logo, #header-logo {
 	background-image:url('../img/logo.png');
 	background-repeat: no-repeat;
@@ -226,11 +232,8 @@ section {
 	}
 
 	.nav-item {
-		border:none;
-		font-size: 2em;
 		opacity: 0.8;
-		font-weight: 700;
-		text-transform: uppercase;
+		font-size: 2em;
 	}
 
 	.nav-item a {
