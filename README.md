@@ -2,9 +2,11 @@
 
 Tapastreet is a geovisual discovery engine. A conduit through which people can connect, discover and share...
 
-This project is the client-side website of [http://www.tapastreet.com](http://www.tapastreet.com).
+This project is the client-side source for [http://www.tapastreet.com](http://www.tapastreet.com).
 
-* Source: [https://github.com/ziir/tapastreet-draft](https://github.com/ziir/tapastreet-draft)
+This project is based on the famous [HTML5 BOILERPLATE](http://html5boilerplate.com/), wich is great by the way.
+
+* Source: [https://github.com/ziir/tapastreet.com](https://github.com/ziir/tapastreet.com)
 * Homepage: [http://www.tapastreet.com](http://www.tapastreet.com)
 * Twitter: [@tapastreet](http://twitter.com/tapastreet)
 * Devs Twitter: [@TapastreetDev](http://twitter.com/TapastreetDev)
@@ -20,5 +22,4 @@ Choose one of the following options:
 
 ## Contributing
 
-Anyone and everyone is welcome to [contribute](CONTRIBUTING.md). Hundreds of
-developers have helped make the HTML5 Boilerplate what it is today.
+Anyone and everyone is welcome to [contribute](CONTRIBUTING.md).
