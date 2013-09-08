@@ -1,4 +1,4 @@
-(function($, jQuery){
+(function(){
 	var tapastreet = {};
 
 	tapastreet.init = function() {
@@ -182,4 +182,4 @@
 		return M;
 	})();
  
-}($, jQuery));
+}());
