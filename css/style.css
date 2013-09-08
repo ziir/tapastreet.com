@@ -90,7 +90,7 @@ section {
 	z-index: 200;
 }
 
-#header a:hover {
+#header a:hover, #header .nav-item.selected a {
 	color:#E8B50C;
 }
 

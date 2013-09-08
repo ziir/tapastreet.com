@@ -48,7 +48,9 @@
 		var	scrollSpeed = 1000,
 			scrollEase ='easeOutExpo',
 			targetSection,
-			timeoutID;
+			timeoutID,
+			windowScrollTop,
+			currentSection;
 
 		// Scroll animation on inside links
 		this.$.wrapper.find('.navigateTo').on("click", function(evt) {
@@ -76,14 +78,26 @@
 
 		// Show the horizontal header on page scroll
 		self.$.window.scroll(function(evt){
+			windowScrollTop = self.$.window.scrollTop();
 			if(self.x > 979) {
-			    if(self.$.window.scrollTop() > self.$.introduction.position().top){
+
+			    if(windowScrollTop > self.$.introduction.position().top){
 			    	if(!self.$.header.hasClass('header-show')) {
 						self.$.header.removeClass('header-hide').addClass('header-show');
 			    	}
 			    } else {
 			        self.$.header.removeClass('header-show').addClass('header-hide');
-			    }				
+			    }
+
+			}
+    		if(self.$.header.hasClass('header-show')) {
+			    self.$.sections.each(function(idx) {
+			    	currentSection = self.$.wrapper.find(this);
+			    	if(windowScrollTop > currentSection.position().top) {
+						self.$.header.find('.selected').removeClass('selected');
+			    		self.$.header.find('#navigateTo'+currentSection.attr('id').capitalise()).addClass('selected');
+		    		}
+			    })
 			}
 
 		});
@@ -195,5 +209,9 @@
         navigator.userAgent.match(/BlackBerry/i)){			
         isMobile = true;
     }
+
+	String.prototype.capitalise = function() {
+	    return this.charAt(0).toUpperCase() + this.slice(1);
+	}
  
 }());
