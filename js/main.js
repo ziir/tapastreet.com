@@ -5,17 +5,34 @@
 
 		// jQuery Selectors to be used
 		this.$ = {};
-		this.$.wrapper = $(".wrapper");
-		this.$.sections = $("section");
+
+		this.$.window = $(window);
+		this.$.document = $(document);
+		this.$.body = $("body");
+
 		this.$.header = $("#header");
+		this.$.navButton = $("#nav-btn");
+		this.$.wrapper = $(".wrapper");
+
+		this.$.sections = $("section");
+		this.$.sections.content = $('.section-content');
+
 		this.$.homepage = $("#homepage");
 		this.$.introduction = $("#introduction");
 		this.$.discover = $("#discover");
 		this.$.team = $("#team");
 		this.$.footer = $("#footer");
 
+		this.$.featurePreview = $('.feature-preview');
+		this.$.featurePreview.iPhone = $('.feature-preview.iphone');
+		this.$.featurePreview.galaxy = $('.feature-preview.galaxy');
+		this.$.featurePreviewContent = $('.feature-preview-content');
+		this.$.featurePreviewContent.iphone = $('.feature-preview-content.iphone');
+		this.$.featurePreviewContent.galaxy = $('.feature-preview-content.galaxy');
+
 		// Fit every seciton to the user's screen height
 		this.fitSectionsToUserScreen();
+		this.fitFeaturePreviewToUserScreen();
 
 		// Activate event listeners
 		this.listenToEvents();
@@ -29,41 +46,121 @@
 
 		// Scroll animation on inside links
 		this.$.wrapper.find('.navigateTo').on("click", function(evt) {
+
 			evt.preventDefault();
-			//get current
 			targetSection = tapastreet.$.wrapper.find(this).attr('href');
 			sectionTitle = tapastreet.$.wrapper.find(this).attr('data-title');
 			
-			//Set doc title
 			document.title = 'Tapastreet - ' + (sectionTitle);
 				
-			//get pos of target section
-			var targetOffset = tapastreet.$.wrapper.find(targetSection).offset().top+1;
+			var targetOffset = tapastreet.$.wrapper.find(targetSection).offset().top;
 
-			//scroll			 
-			$('html,body').animate({scrollTop: targetOffset}, scrollSpeed, scrollEase, function() {
-				window.location.hash = targetSection
+			self.$.body.animate({scrollTop: targetOffset}, scrollSpeed, scrollEase, function() {
+				window.location.hash = targetSection;
 			 });
 
 		});
 
+		this.$.navButton.on("click", function(evt) {
+			evt.preventDefault();
+	        self.$.header.toggleClass('header-hide').toggleClass('header-show');
+	        self.$.sections.toggleClass('section-shifted');
+	        self.$.wrapper.find(this).toggleClass('in-header');
+		});
+
+
+		// Show the header on page scroll
+		self.$.window.scroll(function(evt){
+			if(self.x > 979) {
+			    if(self.$.window.scrollTop() > self.$.introduction.position().top){
+			        self.$.header.removeClass('header-hide').addClass('header-show');
+			    } else {
+			        self.$.header.removeClass('header-show').addClass('header-hide');
+			    }				
+			}
+
+		});
+
+		// On window resize, resize key elements of the page.
 		$(window).resize(function() {
 			self.fitSectionsToUserScreen();
+			self.fitFeaturePreviewToUserScreen();
 		});
 
 	}
 
 	tapastreet.fitSectionsToUserScreen = function() {
 		var self = this;
+		this.getUserScreenDimensions();
+		self.$.sections.css('height',self.y+'px');
+		self.$.sections.content.css('min-height', (self.y-50)+'px');
+	}
+
+	tapastreet.getUserScreenDimensions = function() {
 		var w = window,
 		    d = document,
 		    e = d.documentElement,
-		    g = d.getElementsByTagName('body')[0],
-		    x = w.innerWidth || e.clientWidth || g.clientWidth,
-		    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
-		this.$.sections.each(function(index) {
-			self.$.wrapper.find(this).css('height',y+'px');
-		});
+		    g = d.getElementsByTagName('body')[0];
+	    this.x = w.innerWidth || e.clientWidth || g.clientWidth;
+	    this.y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+	}
+
+	tapastreet.fitFeaturePreviewToUserScreen = function() {
+		console.log('FIT featurePreview');
+		var self = this;
+		// top : 98 -  left : 23
+		var iPhoneHWRatio = 2.11,
+			iPhoneContentWHRatio = 0.58,
+			iPhoneContentWWRatio = 1.18777292576,
+			iPhoneContentHHRatio = 1.46683673469,
+			iPhoneContentPositionHYRatio = 4,
+			iPhoneContentPositionWXRatio = 9.95,
+			maxIphoneSize = {
+				width:272,
+				height:575
+			},
+			maxIphoneContentSize = {
+				width:229,
+				height:392
+			},
+			totalMargin = 100,
+			newFeaturePreviewSize = {
+				width: 0,
+				height: 0
+			},
+			newFeaturePreviewContentSize = {
+				width: 0,
+				height: 0
+			},
+			newFeaturePreviewContentPosition = {
+				top: 0,
+				left: 0
+			};
+
+			newFeaturePreviewSize.height = this.y - totalMargin;
+			newFeaturePreviewSize.width = newFeaturePreviewSize.height/iPhoneHWRatio;
+
+			newFeaturePreviewContentSize.height = newFeaturePreviewSize.height/iPhoneContentHHRatio;
+			newFeaturePreviewContentSize.width = newFeaturePreviewSize.width/iPhoneContentWWRatio;
+
+			newFeaturePreviewContentPosition.top = newFeaturePreviewContentSize.height/iPhoneContentPositionHYRatio;
+			newFeaturePreviewContentPosition.left = newFeaturePreviewContentSize.width/iPhoneContentPositionWXRatio;
+
+		if (this.y < maxIphoneSize.height+totalMargin) {
+			this.$.featurePreview
+				.css('width', newFeaturePreviewSize.width)
+				.css('height', newFeaturePreviewSize.height);
+			this.$.featurePreviewContent
+				.css('width', newFeaturePreviewContentSize.width)
+				.css('height', newFeaturePreviewContentSize.height);
+			this.$.featurePreviewContent
+				.css('top', newFeaturePreviewContentPosition.top)
+				.css('left', newFeaturePreviewContentPosition.left);
+		} else {
+			console.log("this.y > maxIphoneSize+totalMargin");
+			console.log(this.y);
+		}
+
 	}
 
 

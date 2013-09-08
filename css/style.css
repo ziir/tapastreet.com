@@ -2,8 +2,26 @@
    Helper Classes
    ========================================================================== */
 
+iframe {
+	width:229px;
+	height:392px;
+	position: absolute;
+	top:98px;
+	left:23px;
+	max-height:80%;
+}
+
+button {
+	border: none;
+	box-sizing:content-box;
+}
+
 .hide {
 	display:none;
+}
+
+.show {
+	display:block !important;
 }
 
 .margin-auto {
@@ -23,7 +41,7 @@
 }
 
 .pull-left {
-	float:left;
+	float:left !important;
 }
 
 .text-center {
@@ -34,13 +52,222 @@
    Website Styles
    ========================================================================== */
 
+a, a:visited {
+	text-decoration: none;
+	color:#fff;
+	text-shadow: rgba(0, 0, 0, 0.796875) 0px 2px 2px;
+}
+
 #homepage {
 	color: #fff;
 	margin:auto;
 	overflow:auto;
 	text-shadow: rgba(0, 0, 0, 0.796875) 0px 2px 2px;
+	background-image:url("../img/pattern-epic.png"), url("../img/homepage-background.jpg");
+	background-size: 6px 6px, cover;
+	background-repeat: repeat, no-repeat;
 }
 
 section {
-	border:4px solid green;
+	min-height:500px;
+	padding:20px;
+	overflow: hidden;
+	-webkit-transition: -webkit-transform 0.5s;
+	-moz-transition: -moz-transform 0.5s;
+	transition: transform 0.5s;
+}
+
+.section-content {
+	width:860px;
+	height:100%;
+	margin:0 auto;
+	position:relative;
+	overflow: hidden;
+}
+
+#header {
+	position: fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100px;
+	background-color: #7abe93;
+	font-family: 'Lato', Arial, sans-serif;
+	-webkit-transition: -webkit-transform 0.5s;
+	-moz-transition: -moz-transform 0.5s;
+	transition: transform 0.5s;
+	z-index: 200;
+}
+
+#header a:hover {
+	color:#E8B50C;
+}
+
+.header-show {
+	-webkit-transform:translateY(0%);
+	-moz-transform:translateY(0%);
+	transform:translateY(0%);
+	box-shadow:0px 0px 8px rgb(204, 204, 204);
+}
+
+.header-hide {
+	-webkit-transform:translateY(-110%);
+	-moz-transform:translateY(-110%);
+	transform:translateY(-110%);
+	box-shadow:none;
+}
+
+.section-shifted {
+	-webkit-transform:translateX(400px);
+	-moz-transform:translateX(400px);
+	transform:translateX(400px);
+}
+
+#header ul {
+	margin: 30px auto;
+	width: 860px;
+}
+
+#header ul li {
+	display: block;
+	padding:10px;
+	float:right;
+}
+
+#header ul li a {
+	min-height:20px;
+}
+
+#header-logo-nav-item {
+	width:230px;
+}
+
+#header-logo {
+	position: relative;
+	bottom:20px;
+	display: block;
+	height:60px;
+	width:210px;
+}
+
+#title-logo, #header-logo {
+	background-image:url('../img/logo.png');
+	background-repeat: no-repeat;
+	background-size: auto 100%;
+	text-indent: -200px;
+	overflow: hidden;
+}
+
+#title-logo {
+	height:91px;
+	margin-left: 28px;
+}
+
+#homepage .description {
+	text-indent: 45px;
+}
+
+.feature-preview {
+	background:url("../img/iPhone5-vertical-large.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	width:272px;
+	height:575px;
+	position: relative;
+}
+
+.js .feature-preview iframe {
+	display:block;
+}
+
+
+@media (max-width: 979px) {
+	#nav-btn {
+		display:block;
+		width:48px;
+		height:48px;
+		background-color: transparent;
+		padding:0;
+		position: fixed;
+		top:55px;
+		left:0;
+		z-index:400;
+		background-image: url("../img/toggle-menu.png");
+		text-indent: -200px;
+		overflow: hidden;
+	}
+
+	#nav-btn.in-header {
+		top:25px;
+		left:20px;
+	}
+
+	.feature-preview {
+		position:absolute;
+		left:70px;
+		top:300px;
+	}
+
+	.section-content {
+		width:380px;
+	}
+
+	#header {
+		width:400px;
+		height:100%;
+		overflow: hidden;
+	}
+
+
+	#header ul li {
+		z-index: 300;
+		float:none;
+		padding-left: 20px;
+	}
+
+	.nav-item {
+		border:none;
+		font-size: 2em;
+		opacity: 0.8;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
+
+	.nav-item a {
+		color:#7abe93;
+	}
+
+	#header ul {
+		margin: 100px auto 30px;
+		width:100%;
+		height:100%;
+		padding:0;
+    	background-color: #fff;
+	}
+
+	#header-logo-nav-item {
+		margin: 0 auto;
+		position: absolute;
+		top:30px;
+		left:200px;
+		margin-left: -125px;
+		clear:both;
+		background-color: transparent !important;
+	}
+
+	h1 {
+		font-size: 1.4em;
+	}
+
+	.header-show {
+		-webkit-transform:translateX(0%);
+		-moz-transform:translateX(0%);
+		transform:translateX(0%);
+	}
+
+	.header-hide {
+		-webkit-transform:translateX(-110%);
+		-moz-transform:translateX(-110%);
+		transform:translateX(-110%);
+	}
 }

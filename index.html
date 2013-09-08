@@ -39,39 +39,77 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <div class="wrapper">
-            <nav id="header" class="hide">
+            <button id="nav-btn" class="hide">Menu</button>
+            <nav id="header" class="header-hide">
                 <ul>
-                    <li><a href="#homepage" title="Back to homepage">Welcome</a></li>
-                    <li><a href="#introduction" title="Want to know more?">Introduction</a></li>
-                    <li><a href="#discover" title="Ready to be amazed?">Discover</a></li>
-                    <li><a href="#team" title="Meet the team">Team</a></li>
-                    <li><a href="#blog" title="Yup, we have a blog!">Blog</a></li>
-                    <li><a href="#homepage" title="We can do that.">Help</a></li>
+                    <li id="header-logo-nav-item">
+                        <a id="header-logo" href="/" title="">Tapastreet</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navigateTo" href="#homepage" title="We can do that.">
+                            Help
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navigateTo" href="#blog" title="Yup, we have a blog!">
+                            Blog
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navigateTo" href="#team" title="Nice to meet you.">
+                            Team
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navigateTo" href="#discover" title="Ready to be amazed?">
+                            Discover
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navigateTo" href="#introduction" title="Want to know more?">
+                            Introduction
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navigateTo" href="#homepage" title="Back to homepage.">
+                            Welcome
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <section id="homepage">
-                <h1 class="title-logo">Tapastreet</h1>
-                <h2 class="description">Connect. Discover. Share</h2>
-                <div id="app-button-container">
-                    <a href="https://itunes.apple.com/app/soundwave-music-discovery/id623353909" onClick="_gaq.push(['_trackEvent', 'AppButtonClicks', 'Click', 'AppStore']);" target="_new">
-                        <img alt="Get Tapastreet on App Store" src="images/appStoreBadge.png" />
-                    </a>
-                    <a href="https://play.google.com/store/apps/details?id=me.soundwave.soundwave" onClick="_gaq.push(['_trackEvent', 'AppButtonClicks', 'Click', 'PlayStore']);" target="_new">
-                        <img alt="Get Soundwave on Google Play" src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png" />
-                    </a>
+                <div class="section-content">
+                    <div class="feature-preview pull-right">
+                        <iframe class="hide yt-player feature-preview-content" type="text/html" 
+                    src="http://www.youtube.com/embed/7PFQsCCI_y8?controls=1&autohide=1"
+                    frameborder="0" allowfullscreen>
+                        </iframe>
+                    </div>
+                    <h1 id="title-logo">Tapastreet</h1>
+                    <h2 class="description">Connect. Discover. Share</h2>
+                    <div id="app-button-container">
+                        <a href="https://itunes.apple.com/ie/app/tapastreet/id685943698" onClick="_gaq.push(['_trackEvent', 'AppButtonClicks', 'Click', 'AppStore']);" target="_new">
+                            <img alt="Get Tapastreet on App Store" src="img/apple-store-button.png" />
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.tapastreet.android&hl=en" onClick="_gaq.push(['_trackEvent', 'AppButtonClicks', 'Click', 'PlayStore']);" target="_new">
+                            <img alt="Get Soundwave on Google Play" src="img/google-play-button.png" />
+                        </a>
+                    </div>
                 </div>
             </section>
             <section id="introduction">
-                <h1 class="highlight-title">
-                    Geolocated social media.<br/>
-                    <span class="text-center">On a map.</span>
-                </h1>
-                <p class="highlight-info">
-                    Tapastreet collects geolocated social media from all around the world.<br/>
-                    Our map is the best way to discover the world just by lifting a finger.
-                </p>
-                <div class="feature-preview">
-                    <img src="" alt="Discovery Map Feature Preview" title=""/>
+                <div class="section-content">
+                    <div class="feature-preview pull-left">
+                        <img src="" alt="Discovery Map Feature Preview" title=""/>
+                    </div>
+                    <h1 class="highlight-title pull-right">
+                        Geolocated social media.<br/>
+                        <span class="text-center">On a map.</span>
+                    </h1>
+                    <p class="highlight-info pull-right">
+                        Tapastreet collects geolocated social media from all around the world.<br/>
+                        Our map is the best way to discover the world just by lifting a finger.
+                    </p>
                 </div>
             </section>
             <section id="discover">
