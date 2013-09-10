@@ -70,7 +70,7 @@
                             Introduction
                         </a>
                     </li>
-                    <li id="navigateToHomepage" class="nav-item selected">
+                    <li id="navigateToHomepage" class="nav-item">
                         <a class="navigateTo" href="#homepage" title="Back to homepage.">
                             Welcome
                         </a>
@@ -80,6 +80,9 @@
             <section id="homepage">
                 <div class="section-content">
                     <div class="feature-preview pull-right">
+                        <button class="hide" id="previewIncentiveOnMobile">
+                            Show Feature Preview
+                        </button>
                         <object class="hide yt-player feature-preview-content" type="application/x-shockwave-flash" data="http://www.youtube.com/v/7PFQsCCI_y8">
                             <param name="movie" value="http://www.youtube.com/v/7PFQsCCI_y8" />
                             <param value="transparent" name="wmode" />
@@ -87,15 +90,21 @@
                             <a href="http://get.adobe.com/flashplayer/" target="blank"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get flash player to play to this file" width="88" height="31" /></a><br />
                         </object>
                     </div>
-                    <h1 id="title-logo">Tapastreet</h1>
-                    <h2 class="description">Connect. Discover. Share</h2>
-                    <div id="app-button-container">
-                        <a href="https://itunes.apple.com/ie/app/tapastreet/id685943698" onClick="_gaq.push(['_trackEvent', 'AppButtonClicks', 'Click', 'AppStore']);" target="_new">
-                            <img alt="Get Tapastreet on App Store" src="img/apple-store-button.png" />
-                        </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.tapastreet.android&hl=en" onClick="_gaq.push(['_trackEvent', 'AppButtonClicks', 'Click', 'PlayStore']);" target="_new">
-                            <img alt="Get Tapastreet on Google Play" src="img/google-play-button.png" />
-                        </a>
+                    <div class="shiftable-section-content">
+                        <h1 id="title-logo">Tapastreet</h1>
+                        <h2 class="description">
+                            <span>Connect. </span>
+                            <span>Discover. </span>
+                            <span>Share. </span>
+                        </h2>
+                        <div id="app-button-container">
+                            <a href="https://itunes.apple.com/ie/app/tapastreet/id685943698" onClick="_gaq.push(['_trackEvent', 'AppButtonClicks', 'Click', 'AppStore']);" target="_new">
+                                <img class="store-button itunes"alt="Get Tapastreet on App Store" src="img/apple-store-button.png" />
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.tapastreet.android&hl=en" onClick="_gaq.push(['_trackEvent', 'AppButtonClicks', 'Click', 'PlayStore']);" target="_new">
+                                <img class="store-button play-store"alt="Get Tapastreet on Google Play" src="img/google-play-button.png" />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
