@@ -41,6 +41,28 @@
 
 		// Activate event listeners
 		this.listenToEvents();
+
+		this.hightlistNavItem();
+	}
+
+	tapastreet.hightlistNavItem = function() {
+		var self = this;			
+		windowScrollTop = this.$.window.scrollTop();
+
+		this.$.sections.each(function(idx) {
+			currentSection = self.$.wrapper.find(this);
+
+			if(windowScrollTop >= currentSection.position().top) {
+				self.$.header.find('.selected').removeClass('selected');
+	    		self.$.header.find('#navigateTo'+currentSection.attr('id').capitalise()).addClass('selected');
+    		}
+	    });
+	}
+
+	tapastreet.toggleSlideNav = function(){
+        this.$.header.toggleClass('header-hide').toggleClass('header-show');
+        this.$.sections.toggleClass('section-shifted');
+        this.$.wrapper.find("#nav-btn").toggleClass('in-header');
 	}
 
 	tapastreet.listenToEvents = function() {
@@ -62,6 +84,10 @@
 				
 			var targetOffset = tapastreet.$.wrapper.find(targetSection).offset().top;
 
+	        if(self.x < 979 && self.$.header.hasClass('header-show')) {
+	        	self.toggleSlideNav();
+	        }
+
 			self.$.scrollBody.animate({scrollTop: targetOffset}, scrollSpeed, scrollEase, function() {
 				window.location.hash = targetSection;
 			});
@@ -70,13 +96,20 @@
 
 		this.$.navButton.on("click", function(evt) {
 			evt.preventDefault();
-	        self.$.header.toggleClass('header-hide').toggleClass('header-show');
-	        self.$.sections.toggleClass('section-shifted');
-	        self.$.wrapper.find(this).toggleClass('in-header');
+			self.toggleSlideNav();
+		});
+
+
+		this.$.featurePreview.find("#previewIncentiveOnMobile").on("click", function(evt) {
+			evt.preventDefault();
+			self.$.sections.find(".shiftable-section-content").toggleClass('shifted-section-content');
+			self.$.featurePreview.toggleClass('shifted-feature-preview');
+			self.$.featurePreview.find(this).toggleClass('arrow-down');
 		});
 
 
 		// Show the horizontal header on page scroll
+		// Set the selected nav-item element on page scroll
 		self.$.window.scroll(function(evt){
 			windowScrollTop = self.$.window.scrollTop();
 			if(self.x > 979) {
@@ -90,25 +123,19 @@
 			    }
 
 			}
-    		if(self.$.header.hasClass('header-show')) {
-			    self.$.sections.each(function(idx) {
-			    	currentSection = self.$.wrapper.find(this);
-			    	if(windowScrollTop > currentSection.position().top) {
-						self.$.header.find('.selected').removeClass('selected');
-			    		self.$.header.find('#navigateTo'+currentSection.attr('id').capitalise()).addClass('selected');
-		    		}
-			    })
-			}
+
+			self.hightlistNavItem();
 
 		});
 
 		// On window resize, resize key elements of the page.
-		$(window).resize(function(evt) {
-			self.fitSectionsToUserScreen();
-			if(navigator.isMobile) {
+		if(!navigator.isMobile) {
+			$(window).resize(function(evt) {
+				self.fitSectionsToUserScreen();
 				self.fitFeaturePreviewToUserScreen();
-			}
-		});
+			});
+		}
+
 
 	}
 
@@ -129,6 +156,7 @@
 	}
 
 	tapastreet.fitFeaturePreviewToUserScreen = function() {
+		console.log('FIT FEATURE PREVIEW TO USER SCREEN');
 		var self = this;
 		var iPhoneHWRatio = 2.11,
 			iPhoneContentWHRatio = 0.58,
@@ -207,8 +235,12 @@
         navigator.userAgent.match(/iPad/i)|| 
         navigator.userAgent.match(/iPod/i) || 
         navigator.userAgent.match(/BlackBerry/i)){			
-        isMobile = true;
+        navigator.isMobile = true;
     }
+
+
+    console.log(navigator.isMobile);
+
 
 	String.prototype.capitalise = function() {
 	    return this.charAt(0).toUpperCase() + this.slice(1);
